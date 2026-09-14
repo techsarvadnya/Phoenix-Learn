@@ -1,0 +1,56 @@
+# Phoenix-Learn: Interactive Web Application Entry Engine
+# Purpose: Serves as the landing page UI and initializes multi-stage routing state.
+# Logic: Leverages Streamlit layout containers and session state variables to manage user navigation.
+
+import streamlit as st
+
+# Application Header Section
+st.title("Phoenix-Learn")
+st.write("Learn by thinking, not memorizing.")
+
+# Platform Value Proposition
+st.header("About Phoenix-Learn")
+st.write(
+    "Phoenix-Learn is a discussion-based learning platform designed "
+    "to help students understand ideas deeply instead of simply "
+    "memorizing answers."
+)
+
+# Multi-Column Layout for Feature Showcase
+columns = st.columns(2)
+
+with columns[0]:
+    st.header("Harkness Learning")
+    st.write(
+        "Think → Discuss → Challenge → Reflect. "
+        "You explain your thinking, question assumptions, and build "
+        "understanding through discussion."
+    )
+
+with columns[1]:
+    st.header("Logic-First Learning")
+    st.write(
+        "We focus on why something works before asking you to memorize "
+        "how it works."
+    )
+
+st.divider()
+
+# Core Architecture Container
+with st.container():
+    st.header("Fail-Safe Architecture")
+    st.write(
+        "Mistakes are part of learning. Wrong answers become opportunities "
+        "to investigate, correct reasoning, and try again."
+    )
+
+# Session State Initialization Logic (Guards against state reset on reruns)
+if "page" not in st.session_state:
+    st.session_state["page"] = 0
+
+# Navigation Trigger: Updates page state when clicked
+if st.button("Start Learning"):
+    st.session_state["page"] = 1
+
+# Debug/State Verification Output
+st.write("Current page:", st.session_state["page"])
